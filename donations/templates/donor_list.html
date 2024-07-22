@@ -1,0 +1,41 @@
+{% extends "static/base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="">
+{% endblock %}
+
+{% block 'dashboard' %}
+<br>
+<br>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Donors</h1>
+    
+
+    
+    <ul class="list-group">
+        <form method="GET" class="form-inline justify-content-center mt-4 ">
+            <span class="ots" ><a class="btn btn-primary mb-2 ml-2 " href="{% url 'donor_create' %}">Add Donor</a></span>
+            <div class="form-group mb-2 ml-2">
+                <input type="text" class="form-control" placeholder="search" aria-label="Search" name="search" aria-describedby="basic-addon2" value="{{ request.GET.search }}" >
+
+                <button type="submit" class="btn ml-n5">
+                    <i  class="fa-solid fa-magnifying-glass "> </i>
+                </button>
+            </div>
+            
+        </form>
+
+        {% for donor in donors %}
+        <li class="list-group-item">
+            <a href="{% url 'donor_info' donor.identification %}" class="text-decoration-none"> 
+                {{ donor.name }} : {{ donor.blood_type }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
+

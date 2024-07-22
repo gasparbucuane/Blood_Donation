@@ -1,0 +1,41 @@
+{% extends "static/base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Donor Information</h1>
+        <table class="table table-striped">
+            <thead class="text-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Blood Type</th>
+                    <th>Identification</th>
+                    <th>Donations</th>
+                    <th>Proxima doacao</th>
+
+                </tr>
+            </thead>
+            <tbody class="text-white">
+                
+                <tr>
+                    <td>{{ donor.name }}</td>
+                    <td>{{ donor.blood_type }}</td>
+                    <td>{{ donor.identification }}</td>
+                    <td>{%for donation in donor.donations.all%} 
+                            {{ donation.created_at }}
+                        {%endfor%} 
+                    </td>
+                    <td>{%for donation in donor.donations.all%} 
+                             {{ donation.next_donation }}
+                        {%endfor%}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
